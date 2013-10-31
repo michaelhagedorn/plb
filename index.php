@@ -6,7 +6,7 @@
 
 // INDEX Definitions
 
-define ("APP_VERSION_DESC",     "development_status");
+define ("APP_VERSION_DESC",     "development");
 define ("APP_VERSION_INT",      "0.0.1");
 
 define ("DEBUG_GLOBAL", TRUE);
@@ -20,7 +20,7 @@ define ("DEBUG_GLOBAL", TRUE);
 
 if (DEBUG_GLOBAL)
 {
-    echo DEBUG_GLOBAL ? "DEBUG_BEGIN" : FALSE;
+    echo DEBUG_GLOBAL ? "DEBUG_BEGIN : [Applikationsstatus: " . APP_VERSION_DESC . " in Subversion " . APP_VERSION_INT . "]<br>" : FALSE;
 
 
     echo DEBUG_GLOBAL ? "<br>DEBUG_END" : FALSE;    

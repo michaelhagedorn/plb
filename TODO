@@ -1,0 +1,16 @@
+1.) Roadmap
+
+2.) Meilensteine
+
+3.) Benötigter Quellcode
+
+3.1) - Klassen
+
+    - UmgebungsCheck - Installer-Skript
+        - Datenbankprüfung (Struktur vorhanden)
+        - Beispiel-Einträge in Datenbank durch SQL-Inserts
+        - Datenbank-Abhängigkeit (Struktur) anhand der APP_VERSION_INT
+    - Datenbankanbindung - ezSQL-Implementierung
+3.2) - Funktionen
+
+3.3) - Features

@@ -25,7 +25,7 @@ echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />"
 
     // Sprachdefinitionen
     //  - Sprachdatei muss vorhanden sein, ansonsten bricht das gesamte Programm ab!
-    //  - aktuelle STandardsprache ist "german"
+    //  - aktuelle Standardsprache ist "german"
     //  - Erweiterung der Sprachen ist in der TODO näher beschrieben
     (@include("lang/" . APP_LANG . ".php")) 
         OR 

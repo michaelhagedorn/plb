@@ -17,3 +17,4 @@
         - Sprachdateien
             - weitere Sprachen können durch hinzufügen einer .php-Datei im Ordner /lang realisiert werden
                 - Als Ergänzungsbeispiel und Strukturvorgabe ist hierzu (bis auf Weiteres) die Standardsprachdatei "/lang/german.php" heranzuziehen
+                - Diese Sprachdatei ist Grundvoraussetzung für die komplette Applikation

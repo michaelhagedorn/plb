@@ -23,7 +23,7 @@ if (DEBUG_GLOBAL)
     echo DEBUG_GLOBAL ? "DEBUG_BEGIN" : FALSE;
 
 
-    echo DEBUG_GLOBAL ? "DEBUG_END" : FALSE;    
+    echo DEBUG_GLOBAL ? "<br>DEBUG_END" : FALSE;    
 }
 
 // INDEX Produktiver Anteil 

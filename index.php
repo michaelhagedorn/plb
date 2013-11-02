@@ -8,7 +8,7 @@
 // INDEX Definitions
 
     define ("APP_VERSION_DESC",     "development");
-    define ("APP_VERSION_INT",      "0.0.1");
+    define ("APP_VERSION_INT",      "0.0.2");
     define ("APP_LANG",             "german");
 
     define ("DEBUG_GLOBAL", TRUE);

@@ -22,7 +22,9 @@
 
 // INDEX Includes -> zur Laufzeit benötigter Quellcode
     // KLASSEN
-
+        //Logbuch
+        include 'classes/c_log.php';
+    
     // DEFINITIONEN
 
         // Sprachdefinitionen
@@ -54,5 +56,10 @@
 
 // INDEX Produktiver Anteil 
 
+// Aktueller Logbuchtest
+$log = new c_log();
+$log->dumpLogs();
+$log->quickAddLog("Test-Logbucheintrag");
+$log->dumpLogs();
 
 ?>

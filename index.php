@@ -12,26 +12,22 @@
     define ("APP_LANG",             "german");
 
     define ("DEBUG_GLOBAL", TRUE);
-
-
-// INDEX Header --> HTML-HEAD
-
-    // Vorerst zur korrekten Darstellung von Umlauten
-        echo "<meta http-equiv=\"content-type\" content=\"text/html; "
-        . "charset=utf-8\" />";
+    define ("SESSION_DELETE_SESSION_FILE", TRUE);
 
 // INDEX Includes -> zur Laufzeit benötigter Quellcode
     // KLASSEN
-        //Logbuch
+        // Logbuch
         include 'classes/c_log.php';
-    
-    // DEFINITIONEN
+        // Session Handler
+        include 'classes/c_session.php';
 
+    // DEFINITIONEN
         // Sprachdefinitionen
         //  - Sprachdatei muss vorhanden sein, ansonsten bricht das gesamte 
         //  Programm ab!
         //  - aktuelle Standardsprache ist "german"
         //  - Erweiterung der Sprachen ist in der TODO näher beschrieben
+        
         (@include("lang/" . APP_LANG . ".php")) 
             OR 
                 die("Sprache konnte nicht ermittelt und "
@@ -41,25 +37,70 @@
                 . "definiert ist. Eine Sprachdatei ist erforderlich! "
                 . "Diese können Sie <a href=\"#\">hier</a> "
                 . "herunterladen.");
+        
+    // Objekte
+        // Da der Logger auch für die Klassen zuständig ist muss dieser als 
+        // erstes instanziiert werden
+        $log = new c_log();
+        // DIe Session Klasse / das Objekt möchte die Session erstellen, dieses 
+        // kann nur passieren, wenn noch kein einziges Zeichen als Antwort auf 
+        // die Anfrage an den Browser gesendet wurde
+        $session = new c_session; 
+
+// INDEX Header --> HTML-HEAD       
+
+    // Vorerst zur korrekten Darstellung von Umlauten
+        // Dieses sollte in eine separate HTML-Header-Datei ausgelagert werden
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="de">
+    <head>
+        <title>Vorlage für XHTML 1.0 Strict </title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="robots" content="index, nofollow">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<?php        
+        // Die CSS-Style Datei muss noch dynamisch gestaltet und dementsprechen 
+        // eingebunden werden. Vorerst wird ein Default-Style angelegt
+?>
+        <style type="text/css">
+        <!--
+         @import url("styles/default.css");
+        -->
+        </style>
+    </head>
+    <body>        
+<?php
+
 
 // INDEX Debug -> Debugging HEAD
 
     if (DEBUG_GLOBAL)
     {
-        echo    DEBUG_GLOBAL ? "DEBUG_BEGIN : [" . L_N_APP_STATUS . ": "
+        echo    DEBUG_GLOBAL ? "        DEBUG_BEGIN : [" . L_N_APP_STATUS . ": "
                 . APP_VERSION_DESC . " ". L_P_IN . " " . L_N_SUBVERSION ." " 
                 . APP_VERSION_INT . "]<br>" : FALSE;
 
+            // DEBUG Netto Beginn
+        
+                $log->quickAddLog("Test-Logbucheintrag");
+                $log->quickAddLog("Ein etwas längerer Eintrag um die Ausrichtung zu testen...");
 
-        echo DEBUG_GLOBAL ? "<br>DEBUG_END" : FALSE;    
+                $session->set_var("Name", "Michael Hagedorn");
+                $session->logout();
+
+                $aLogs = $log->getLogsAsArray();
+                include("tmpl/tmpl_log_show.php");
+            
+            // DEBUG Netto Ende
+        
+        echo DEBUG_GLOBAL ? "       DEBUG_END\n" : FALSE;    
     }
 
 // INDEX Produktiver Anteil 
 
-// Aktueller Logbuchtest
-$log = new c_log();
-$log->dumpLogs();
-$log->quickAddLog("Test-Logbucheintrag");
-$log->dumpLogs();
-
 ?>
+    </body>
+</html>

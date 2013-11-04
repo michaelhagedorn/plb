@@ -76,6 +76,13 @@ class c_log
         var_dump($this->aLogs);
         echo "</pre>";        
     }
+    
+    public function getLogsAsArray()
+    {
+        // Alle Logbucheinträge als Array zurückgeben
+        
+        return $this->aLogs;
+    }
 
 
     private function setMessage($Message)

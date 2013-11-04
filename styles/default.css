@@ -1,0 +1,32 @@
+.tmpl_log_show_application
+{
+    background: black;
+    color: red;
+}
+
+.tmpl_log_show_table
+{
+    background: gray;
+    color:  #ffffff;
+    text-align: center;
+    font-family: "Lucida Console";
+    font-size: 10px;
+    padding:  2px;
+}
+
+.tmpl_log_show_table_head
+{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.tmpl_log_show_table_data:hover
+{
+    background: black;
+    cursor: pointer;
+}
+
+.tmpl_log_show_table_data_left
+{
+    text-align: left;
+}

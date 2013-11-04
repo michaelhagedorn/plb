@@ -9,7 +9,7 @@
 
     define ("APP_VERSION_DESC",     "development");
     define ("APP_VERSION_INT",      "0.0.2");
-    define ("APP_LANG",             "german");
+    define ("APP_LANG",             "english");
 
     define ("DEBUG_GLOBAL", TRUE);
 
@@ -19,7 +19,13 @@
     // Vorerst zur korrekten Darstellung von Umlauten
         echo "<meta http-equiv=\"content-type\" content=\"text/html; "
         . "charset=utf-8\" />";
-
+        ?>
+            <style type="text/css">
+            <!--
+            @import url("styles/default.css");
+            -->
+            </style>
+        <?php
 // INDEX Includes -> zur Laufzeit benötigter Quellcode
     // KLASSEN
         //Logbuch
@@ -58,8 +64,9 @@
 
 // Aktueller Logbuchtest
 $log = new c_log();
-$log->dumpLogs();
 $log->quickAddLog("Test-Logbucheintrag");
-$log->dumpLogs();
+$log->quickAddLog("Ein etwas längerer Eintrag um die Ausrichtung zu testen...");
 
+$aLogs = $log->getLogsAsArray();
+include("tmpl/tmpl_log_show.php");
 ?>

@@ -3,7 +3,6 @@
 
 class c_log 
 {
-
     private $strMessage;
     private $intTimestamp = 0;
     private $intPriority;
@@ -24,7 +23,8 @@ class c_log
                                             0 => "Security",
                                             1 => "Classes",
                                             2 => "User",
-                                            3 => "System"
+                                            3 => "System",
+                                            4 => "Session"
                                         );
     private $aLogs          =   array   ();
     
@@ -33,7 +33,7 @@ class c_log
         $this->setTimestamp();
         $this->setPriority("Informational");
         $this->setFacility("User");
-        $this->setMessage("Logger started...");
+        $this->setMessage(L_S_START_LOGGING);
         
         $this->addLog();
     }
@@ -58,8 +58,7 @@ class c_log
         $this->setMessage($Message);
         
         $this->addLog();
-    }
-    
+    }    
     
     public function getLogEntry($ID)
     {
@@ -78,12 +77,10 @@ class c_log
     }
     
     public function getLogsAsArray()
-    {
-        // Alle Logbucheinträge als Array zurückgeben
-        
+    {                
+        // Alle Logbucheinträge als Array zurückgeben        
         return $this->aLogs;
     }
-
 
     private function setMessage($Message)
     {

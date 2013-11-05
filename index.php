@@ -13,6 +13,8 @@
 
     define ("DEBUG_GLOBAL", TRUE);
     define ("SESSION_DELETE_SESSION_FILE", TRUE);
+    
+    date_default_timezone_set('Europe/Berlin'); //timezone
 
 // INDEX Includes -> zur Laufzeit benötigter Quellcode
     // KLASSEN
@@ -20,6 +22,11 @@
         include 'classes/c_log.php';
         // Session Handler
         include 'classes/c_session.php';
+        // MySQL-Anbindung
+        include 'classes/ez_sql_core.php';
+        include 'classes/ez_sql_mysql.php';
+
+
 
     // DEFINITIONEN
         // Sprachdefinitionen
@@ -41,12 +48,14 @@
     // Objekte
         // Da der Logger auch für die Klassen zuständig ist muss dieser als 
         // erstes instanziiert werden
-        $log = new c_log();
+        $log = new c_log;
         // DIe Session Klasse / das Objekt möchte die Session erstellen, dieses 
         // kann nur passieren, wenn noch kein einziges Zeichen als Antwort auf 
         // die Anfrage an den Browser gesendet wurde
         $session = new c_session; 
-
+        // MySQL Datenbankobjekt
+        //$db = new ezSQL_mysql('root', '', 'lb', 'localhost'); //user, password, database name, host
+        
 // INDEX Header --> HTML-HEAD       
 
     // Vorerst zur korrekten Darstellung von Umlauten
@@ -88,8 +97,13 @@
                 $log->quickAddLog("Test-Logbucheintrag");
                 $log->quickAddLog("Ein etwas längerer Eintrag um die Ausrichtung zu testen...");
 
-                $session->set_var("Name", "Michael Hagedorn");
+                
+                
+                $session->set_var("username", "Michael Hagedorn");
                 $session->logout();
+                // Datenbank muss vorhanden sein : sonst gibt es Fehler
+                //$db->query("SHOW TABLES");
+                //$db->debug();
 
                 $aLogs = $log->getLogsAsArray();
                 include("tmpl/tmpl_log_show.php");

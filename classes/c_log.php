@@ -24,7 +24,8 @@ class c_log
                                             1 => "Classes",
                                             2 => "User",
                                             3 => "System",
-                                            4 => "Session"
+                                            4 => "Session",
+                                            5 => "Database"
                                         );
     private $aLogs          =   array   ();
     
